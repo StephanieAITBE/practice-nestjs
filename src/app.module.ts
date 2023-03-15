@@ -8,6 +8,8 @@ import { DatabaseService } from './database/database.service';
 import { CommonModule } from './common/common.module';
 import { HttpModule } from '@nestjs/axios';
 import { AuthModule } from './auth/auth.module';
+import { CustomerModule } from './customer/customer.module';
+import { CustomerController } from './customer/controller/customer.controller';
 
 @Module({
   imports: [
@@ -18,8 +20,9 @@ import { AuthModule } from './auth/auth.module';
     HttpModule,
     CommonModule,
     AuthModule,
+    CustomerModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, CustomerController],
   providers: [AppService],
 })
 export class AppModule {}
