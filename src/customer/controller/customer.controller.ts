@@ -7,17 +7,16 @@ export class CustomerController {
   constructor(private customerService: CustomerService) {}
 
   @Post()
-  async create(@Body() customerDTO: CustomerDTO) {
-    const customer = await this.customerService.create(customerDTO);
-    if (!customer) {
-      return 'error in creating todo';
-    }
-    return 'todo created successfully';
+  create(@Body() customerDTO: CustomerDTO) {
+    return this.customerService.create(customerDTO);
+    // if (!customer) {
+    //   return 'error in creating todo';
+    // }
+    // return 'todo created successfully';
   }
 
   @Get()
-  async findAll() {
-    const customers: Array<CustomerDTO> = await this.customerService.findAll();
-    return customers;
+  async findAll(): Promise<CustomerDTO[]> {
+    return this.customerService.findAll();
   }
 }

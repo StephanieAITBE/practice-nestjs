@@ -11,9 +11,8 @@ export class CustomerService {
     private customerRepository: Repository<CustomerEntity>,
   ) {}
 
-  create(customer: CustomerDTO): CustomerDTO {
-    this.customerRepository.save(customer);
-    return customer;
+  create(customer: CustomerDTO): Promise<CustomerDTO> {
+    return this.customerRepository.save(customer);
   }
 
   findAll(): Promise<CustomerDTO[]> {

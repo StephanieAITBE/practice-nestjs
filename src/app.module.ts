@@ -10,6 +10,8 @@ import { HttpModule } from '@nestjs/axios';
 import { AuthModule } from './auth/auth.module';
 import { CustomerModule } from './customer/customer.module';
 import { CustomerController } from './customer/controller/customer.controller';
+import { CustomerService } from './customer/service/customer.service';
+import { CustomerEntity } from './customer/entity/customer.entity';
 
 @Module({
   imports: [
@@ -17,12 +19,13 @@ import { CustomerController } from './customer/controller/customer.controller';
     TypeOrmModule.forRootAsync({
       useClass: DatabaseService,
     }),
+    TypeOrmModule.forFeature([CustomerEntity]),
     HttpModule,
     CommonModule,
     AuthModule,
     CustomerModule,
   ],
   controllers: [AppController, CustomerController],
-  providers: [AppService],
+  providers: [AppService, CustomerService],
 })
 export class AppModule {}
